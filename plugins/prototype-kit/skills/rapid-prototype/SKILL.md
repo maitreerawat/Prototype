@@ -1,33 +1,47 @@
 ---
 name: rapid-prototype
 description: >-
-  End-to-end workflow for rapidly designing, scaffolding, and verifying a new software prototype.
-  Use this skill when the user wants to prototype a new idea, spin up a proof-of-concept (PoC),
-  or orchestrate architect, builder, and verifier subagents to build a working MVP.
+  End-to-end research prototyping workflow for designing hypotheses, scaffolding runnable prototypes
+  with side-by-side lab notebooks, verifying experiments, and automatically logging runs via subagents.
 ---
 
-# Rapid Prototype Workflow
+# Rapid Research Prototype Workflow
 
-Use this skill to take a project concept from an initial idea to a working, demonstrable prototype using coordinated subagents.
+Use this skill to take a research question or prototype concept from an initial idea to a runnable, instrumented prototype with a synchronized **Side-by-Side Lab Notebook** (`LAB_NOTEBOOK.md`).
 
-## Step 1: Scope & Stack Alignment
-1. If the user's request leaves the **core interaction**, **target platform/stack**, or **output directory** (default: `prototypes/<slug>/`) unclear, use `ask_question` with 1–3 focused questions.
-2. Keep the scope strictly focused on the **Vertical Slice**—the minimum end-to-end flow that proves the idea.
+## Standard Research Prototype Layout
+Every prototype created under `prototypes/<slug>/` follows the synced lab-bench layout:
+```text
+prototypes/<slug>/
+├── SPEC.md                    # Study design, conditions, and architecture spec
+├── LAB_NOTEBOOK.md            # Live side-by-side research notebook (hypotheses, runs, notes)
+├── README.md                  # 1-command quickstart & reproducibility instructions
+├── src/                       # Prototype source code (AI harness, simulation, or HCI web app)
+└── experiments/
+    └── runs/                  # Timestamped structured outputs (config.json, metrics.json, observations.jsonl)
+```
 
-## Step 2: Architecture & Spec (`proto-architect`)
-Either write `prototypes/<slug>/SPEC.md` directly (for small prototypes) or delegate to the `proto-architect` subagent (see [architect.md](../../agents/architect.md)):
-- Core user story & happy path
-- Tech stack & file layout
-- Minimal data model & pre-loaded seed data
-- How to run and verify
+## Step 1: Hypothesis & Scope Alignment
+1. If the **research question/hypothesis**, **domain** (`AI/ML`, `Simulation/Data Science`, or `HCI/Interactive UI`), or **conditions** are ambiguous, use `ask_question` with 1–3 high-leverage questions.
+2. Select the matching domain skill if applicable:
+   - [proto-ai-eval](../proto-ai-eval/SKILL.md) for AI/LLM/Agentic evaluation harnesses
+   - [proto-sim-lab](../proto-sim-lab/SKILL.md) for Data Science & Computational Modeling
+   - [proto-hci-study](../proto-hci-study/SKILL.md) for HCI & Interactive UI user-study prototypes
 
-## Step 3: Parallel Scaffolding (`proto-builder`)
-Define and invoke `proto-builder` (see [scaffolder.md](../../agents/scaffolder.md)) via `define_subagent` and `invoke_subagent`:
-- If the prototype has independent subsystems (e.g., an API backend and a frontend client, or multiple independent modules), spawn parallel `proto-builder` subagents with clear interface contracts from `SPEC.md`.
-- Ensure realistic seed data is included so the prototype is immediately demonstrable on first launch.
+## Step 2: Study & Architecture Spec (`proto-architect`)
+Delegate to `proto-architect` (see [architect.md](../../agents/architect.md)) or author directly:
+- Create `prototypes/<slug>/SPEC.md` defining the baseline vs. experimental conditions, independent/dependent variables, and minimal stack.
+- Initialize `prototypes/<slug>/LAB_NOTEBOOK.md` with the main hypothesis, experimental design diagram (Mermaid), and formal metrics (LaTeX).
 
-## Step 4: Smoke Verification (`proto-verifier`)
-Run or delegate verification (see [verifier.md](../../agents/verifier.md)):
-1. Run build / syntax / dependency checks.
-2. Execute a smoke test of the primary user flow.
-3. Ensure `prototypes/<slug>/README.md` has a one-command quickstart.
+## Step 3: Instrumented Scaffolding (`proto-builder`)
+Define and invoke `proto-builder` (see [scaffolder.md](../../agents/scaffolder.md)):
+- Build the working vertical slice with realistic seed fixtures.
+- Include automatic run telemetry (`experiments/runs/<run-id>/`) or an in-app **Researcher Drawer** (for HCI web apps) so experimentation and note-taking happen side by side.
+
+## Step 4: Smoke Run & Verification (`proto-verifier`)
+Define and invoke `proto-verifier` (see [verifier.md](../../agents/verifier.md)):
+- Verify dependencies, build, and execute at least one baseline run and one experimental variant run.
+
+## Step 5: Automatic Lab Logging (`proto-scribe`)
+Define and invoke `proto-scribe` (see [scribe.md](../../agents/scribe.md)) after verification or after any new experiment run:
+- Automatically log the run parameters, metrics comparison table, and observations into `prototypes/<slug>/LAB_NOTEBOOK.md`.

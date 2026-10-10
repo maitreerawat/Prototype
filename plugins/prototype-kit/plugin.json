@@ -1,11 +1,11 @@
 {
   "name": "prototype-kit",
-  "displayName": "Prototype Kit",
-  "version": "0.1.0",
-  "description": "System agents, subagents, and modular skills for rapidly architecting, scaffolding, and verifying software prototypes across any stack.",
+  "displayName": "Research Prototype Kit",
+  "version": "0.2.0",
+  "description": "Research-first system agents, subagents, and skills for rapidly building prototypes and taking structured lab notes side by side across AI/ML, Data Science/Simulation, and HCI.",
   "suggestedPrompts": [
-    "Prototype a new project idea end-to-end using the rapid-prototype workflow",
-    "Create a new specialized prototyping skill or subagent for a specific tech stack",
-    "Review my prototype concept and generate a lean vertical-slice architecture spec"
+    "Prototype a new research experiment with a side-by-side LAB_NOTEBOOK.md",
+    "Build an interactive HCI study prototype with an A/B condition switcher and Researcher Drawer",
+    "Synthesize all experiment runs in LAB_NOTEBOOK.md into a paper-ready comparison table"
   ]
 }

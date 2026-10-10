@@ -1,48 +1,56 @@
-# Prototype Studio — Agent & Skill System
+# Prototype Studio — Research-First Agent & Skill System
 
-Welcome to **Prototype**! This repository houses a modular system of **Antigravity Agents, Subagents, Rules, and Skills** designed to rapidly ideate, architect, scaffold, and verify prototypes across different types of projects.
+Welcome to **Prototype**! This repository houses a modular system of **Antigravity System Agents, Subagents, Rules, and Skills** designed specifically for **Researchers** so that **rapid prototyping, controlled experimentation, and structured lab notes happen side by side**.
 
-## Dual-Mode Architecture (Workspace + Plugin)
+## Core Philosophy: Experimentation & Notes Side by Side
 
-This repository is structured to work in **two ways simultaneously**:
-1. **Directly as a Workspace**: Opening `/Users/maitree/Prototype` in Antigravity automatically discovers `.agents/plugins.json` and `AGENTS.md`, loading all prototyping rules, skills, and subagent workflows immediately.
-2. **As a Reusable Plugin (`prototype-kit`)**: The core bundle lives in `plugins/prototype-kit/` with a valid `plugin.json` manifest, so it can be installed or shared as a single self-contained unit across any workspace.
+Every research prototype created in `prototypes/<study-slug>/` pairs runnable experimental code with live note-taking and structured telemetry:
+1. **Synced Lab Bench (`LAB_NOTEBOOK.md` + `experiments/runs/`)**: Hypotheses, LaTeX mathematical formulations, Mermaid diagrams, and run comparison tables live right beside timestamped JSON/JSONL run outputs (`config.json`, `metrics.json`, `observations.jsonl`) with direct clickable links to code and commits.
+2. **In-App Researcher Drawer (for HCI & Interactive UI)**: Interactive web prototypes ship with a collapsible **Researcher Drawer** (`Cmd+Shift+R`) to toggle between study conditions (e.g., Baseline vs. Variant), track task timers, and record live qualitative observations directly to disk.
+3. **Dual Note-Taking Workflow**:
+   - **Automatic (`proto-scribe`)**: Automatically logs parameters, git state, and metric deltas ($\Delta$) into `LAB_NOTEBOOK.md` after every experiment run.
+   - **On-Demand (`research-synthesis`)**: Synthesizes multiple runs and qualitative notes into publication-ready Markdown/LaTeX tables and findings summaries.
+
+## Dual-Mode Repository Layout (Workspace + Plugin)
 
 ```text
 Prototype/
-├── AGENTS.md                                  # Workspace-level entry rules & subagent orchestration guide
+├── AGENTS.md                                  # Workspace-level research orchestration rules
 ├── .agents/
-│   ├── plugins.json                           # Registers plugins/ directory for automatic workspace discovery
-│   └── skills.json                            # Registers plugin skills directly for workspace discovery
+│   ├── plugins.json                           # Auto-discovers plugins/ in the workspace
+│   └── skills.json                            # Auto-discovers plugin skills in the workspace
 ├── plugins/
 │   └── prototype-kit/                         # Self-contained Antigravity Plugin bundle
-│       ├── plugin.json                        # Plugin manifest
+│       ├── plugin.json                        # Plugin manifest (v0.2.0)
 │       ├── README.md                          # Plugin documentation
 │       ├── rules/
-│       │   └── AGENTS.md                      # Always-on prototyping principles & subagent definitions
-│       ├── agents/                            # Specialized subagent prompt profiles
-│       │   ├── architect.md                   # Rapid Architect & Spec Designer
-│       │   ├── scaffolder.md                  # Stack Scaffolder & Builder
-│       │   └── verifier.md                    # Smoke Tester & Demo Verifier
-│       └── skills/                            # On-demand modular skills
-│           ├── rapid-prototype/
-│           │   └── SKILL.md                   # End-to-end rapid prototyping workflow
-│           └── agent-skill-factory/
-│               └── SKILL.md                   # Meta-skill to create new prototype agents & skills
-└── prototypes/                                # Sandbox directory for generated prototypes (optional)
+│       │   └── AGENTS.md                      # Always-on research prototyping principles
+│       ├── agents/                            # 4 Specialized Research Subagent Profiles
+│       │   ├── architect.md                   # proto-architect: Hypothesis & Study Spec Designer
+│       │   ├── scaffolder.md                  # proto-builder: Instrumented Prototype Scaffolder
+│       │   ├── verifier.md                    # proto-verifier: Baseline vs. Variant Runner & QA
+│       │   └── scribe.md                      # proto-scribe: Automatic Side-by-Side Lab Logger
+│       └── skills/                            # Modular Research & Domain Archetype Skills
+│           ├── rapid-prototype/               # End-to-end 5-step research prototyping loop
+│           ├── proto-ai-eval/                 # AI / ML / LLM & Agentic evaluation harnesses
+│           ├── proto-sim-lab/                 # Data Science, Simulation & Computational Modeling
+│           ├── proto-hci-study/               # HCI & Interactive UI with Researcher Drawer
+│           ├── research-synthesis/            # Paper/report table & findings synthesizer
+│           └── agent-skill-factory/           # Meta-skill to add new domain skills & subagents
+└── prototypes/                                # Sandbox directory for research prototypes & lab notebooks
 ```
 
-## Core Subagent Roles
+## Subagents & Skills Summary
 
-When building a prototype, the primary agent coordinates specialized subagents (via `define_subagent` / `invoke_subagent`):
-
-| Subagent | Role | Responsibility |
+| Component | Kind | Purpose |
 | :--- | :--- | :--- |
-| **`proto-architect`** | Rapid Prototype Architect | Clarifies scope, picks the leanest stack, and writes a 1-page `SPEC.md` with data models and vertical slices. |
-| **`proto-builder`** | Full-Stack Prototype Scaffolder | Implements the vertical slice rapidly with working UI/API/CLI, realistic seed data, and zero boilerplate bloat. |
-| **`proto-verifier`** | Prototype QA & Demo Verifier | Runs build/smoke checks, verifies the happy path works end-to-end, and writes run instructions. |
-
-## Included Skills
-
-- **`rapid-prototype`**: End-to-end runbook for taking a rough idea from concept to a running, demonstrable prototype in minutes.
-- **`agent-skill-factory`**: Meta-skill for designing and adding new stack-specific skills (e.g., Web App, FastAPI, AI Agent, CLI) or specialized subagents to this repository as you decide on new project types.
+| **`proto-architect`** | Subagent | Turns a research question into `SPEC.md` (hypothesis, variables, conditions) and initializes `LAB_NOTEBOOK.md`. |
+| **`proto-builder`** | Subagent | Scaffolds the prototype with deterministic seeding, run telemetry, and (for HCI) the in-app Researcher Drawer. |
+| **`proto-verifier`** | Subagent | Executes baseline vs. experimental smoke runs and validates `experiments/runs/` outputs. |
+| **`proto-scribe`** | Subagent | Automatically appends run configs, metric comparisons ($\Delta$), and notes into `LAB_NOTEBOOK.md`. |
+| **`rapid-prototype`** | Skill | Orchestrates the full 5-step loop from hypothesis to logged experiment. |
+| **`proto-ai-eval`** | Skill | Blueprint for AI/LLM/Agentic evaluation harnesses and side-by-side output comparison. |
+| **`proto-sim-lab`** | Skill | Blueprint for seeded numerical simulations, parameter sweeps, and equation-to-code traceability. |
+| **`proto-hci-study`** | Skill | Blueprint for interactive UI studies with built-in A/B Condition Switcher and live Researcher Drawer. |
+| **`research-synthesis`** | Skill | Consolidates runs and observations into publication-ready Markdown/LaTeX tables and takeaways. |
+| **`agent-skill-factory`** | Skill | Meta-skill to expand the studio with new domain skills or subagents. |
