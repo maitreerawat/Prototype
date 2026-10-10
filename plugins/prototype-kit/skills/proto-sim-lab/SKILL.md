@@ -29,3 +29,4 @@ prototypes/<slug>/
 1. **Strict Reproducibility**: Always pass an explicit random seed (`--seed 42`) and record it in `config.json`.
 2. **Equations $\leftrightarrow$ Code Traceability**: In `LAB_NOTEBOOK.md`, document the governing equations in LaTeX ($\frac{dx}{dt} = \dots$) and link each variable directly to its implementation in `src/model.py`.
 3. **Automatic Lab Logging**: Every execution of `sweep.py` writes a new folder under `experiments/runs/` and triggers `proto-scribe` to update `LAB_NOTEBOOK.md`.
+

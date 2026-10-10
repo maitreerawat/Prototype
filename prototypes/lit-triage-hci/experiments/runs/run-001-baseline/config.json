@@ -1,0 +1,9 @@
+{
+  "run_id": "run-001-baseline",
+  "timestamp": "2026-10-10T23:35:00.000Z",
+  "condition": "baseline",
+  "show_confidence_badges": true,
+  "seed": 42,
+  "mode": "simulated",
+  "total_papers": 8
+}

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Literature Triage HCI + AI Testbed (lit-triage-hci)</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="lab-badge">HCI + AI STUDY</span>
+      <h1>Interactive Literature Triage Testbed</h1>
+      <span class="slug-tag">lit-triage-hci</span>
+    </div>
+    <div class="header-controls">
+      <div class="active-condition-pill" id="headerConditionPill">
+        Condition B: AI Evidence Cards
+      </div>
+      <button id="toggleDrawerBtn" class="btn btn-secondary" title="Shortcut: Cmd+Shift+R or Ctrl+Shift+R">
+        <span>Researcher Drawer</span>
+        <kbd>⌘⇧R</kbd>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout" id="appLayout">
+    <!-- LEFT WORKSPACE: Literature Triage Feed -->
+    <main class="triage-workspace" id="triageWorkspace">
+      <section class="protocol-banner">
+        <div class="protocol-header">
+          <div>
+            <strong>Systematic Review Screening Topic:</strong>
+            <span>Empirical Studies of Human-AI Collaborative Decision Making with Quantitative Task Performance Outcomes</span>
+          </div>
+          <div class="paper-jump-bar" id="paperJumpBar"></div>
+        </div>
+        <div class="criteria-grid">
+          <div class="criteria-item criteria-include">
+            <span class="criteria-badge">INCLUDE</span>
+            <span>Empirical human-AI decision study with <strong>N &ge; 30 human participants</strong> and quantitative task accuracy/performance outcomes.</span>
+          </div>
+          <div class="criteria-item criteria-maybe">
+            <span class="criteria-badge">MAYBE</span>
+            <span>Borderline sample size (<strong>N = 15&ndash;25</strong>), hybrid human-LLM proxy validation, or methodological ambiguity requiring full text.</span>
+          </div>
+          <div class="criteria-item criteria-exclude">
+            <span class="criteria-badge">EXCLUDE</span>
+            <span>Off-topic pure ML/systems benchmark (<strong>N = 0 humans</strong>) OR underpowered/uncontrolled pilot (<strong>N &lt; 10</strong>, self-report only).</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace-toolbar">
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-tab active" data-filter="all">All Papers (<span id="countAll">8</span>)</button>
+          <button class="filter-tab" data-filter="unscreened">Unscreened (<span id="countUnscreened">8</span>)</button>
+          <button class="filter-tab" data-filter="screened">Screened (<span id="countScreened">0</span>)</button>
+        </div>
+        <div class="workspace-hint">
+          Click a paper card to focus timer &bull; Use <strong>Include</strong>, <strong>Maybe</strong>, or <strong>Exclude</strong> to record triage decision
+        </div>
+      </section>
+
+      <section class="papers-list" id="papersList" aria-label="Candidate Papers">
+        <!-- Populated dynamically by app.js -->
+      </section>
+    </main>
+
+    <!-- RIGHT SPLIT PANE: Collapsible Side-by-Side Researcher Drawer -->
+    <aside class="researcher-drawer" id="researcherDrawer" aria-label="Researcher Drawer">
+      <div class="drawer-header">
+        <div>
+          <h2>Researcher Drawer</h2>
+          <p class="drawer-subtitle">Live Condition Controls, Telemetry &amp; Lab Notes</p>
+        </div>
+        <span class="shortcut-hint">⌘⇧R</span>
+      </div>
+
+      <!-- 1. Condition & Parameter Controls -->
+      <section class="drawer-section">
+        <h3>1. Experimental Condition &amp; Knobs</h3>
+        <div class="condition-switcher" role="radiogroup" aria-label="Experimental Condition">
+          <label class="condition-option" id="optBaselineLabel">
+            <input type="radio" name="condition" value="baseline" id="radioBaseline" />
+            <div>
+              <strong>Condition A: Baseline</strong>
+              <span>Chronological Title + Full Unformatted Abstract</span>
+            </div>
+          </label>
+          <label class="condition-option active" id="optCardsLabel">
+            <input type="radio" name="condition" value="evidence-cards" id="radioEvidenceCards" checked />
+            <div>
+              <strong>Condition B: AI Evidence Cards</strong>
+              <span>Structured Claim, Method, Sample Size N, Confidence &amp; Limitation</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="knob-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="toggleConfidenceBadges" checked />
+            <span>Show AI Extraction Confidence Badges</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="toggleRevealGroundTruth" checked />
+            <span>Show Ground-Truth Feedback After Decision</span>
+          </label>
+        </div>
+
+        <div class="action-button-row">
+          <button id="autoCompleteBtn" class="btn btn-outline" title="Simulate decisions on remaining papers">
+            Auto-Triage Remaining
+          </button>
+          <button id="resetSessionBtn" class="btn btn-danger-outline">
+            Reset Session
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. Live Telemetry Counter -->
+      <section class="drawer-section">
+        <h3>2. Live Session Telemetry</h3>
+        <div class="telemetry-grid">
+          <div class="metric-box">
+            <span class="metric-label">Progress</span>
+            <strong class="metric-value" id="metricProgress">0 / 8</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Accuracy (Acc)</span>
+            <strong class="metric-value" id="metricAccuracy">&mdash;</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Mean Time (t&#772;)</span>
+            <strong class="metric-value" id="metricMeanTime">0.0s</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Efficiency (E)</span>
+            <strong class="metric-value" id="metricEfficiency">0.000 s⁻¹</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Trap Accuracy</span>
+            <strong class="metric-value" id="metricTrapAcc">&mdash;</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Abstract Expands</span>
+            <strong class="metric-value" id="metricExpansions">0</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Total Elapsed</span>
+            <strong class="metric-value" id="metricElapsed">00:00.0</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Interactions</span>
+            <strong class="metric-value" id="metricInteractions">1</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Side-by-Side Researcher Note Pad -->
+      <section class="drawer-section">
+        <h3>3. Side-by-Side Researcher Note Pad</h3>
+        <div class="notepad-controls">
+          <div class="notepad-tag-row">
+            <label for="notePaperSelect">Paper Tag:</label>
+            <select id="notePaperSelect" class="select-input"></select>
+            <span class="note-cond-tag" id="noteConditionTag">evidence-cards</span>
+          </div>
+          <textarea
+            id="noteInput"
+            rows="2"
+            placeholder="Record qualitative observation (e.g., 'P03 N=4 limitation badge prevented false positive include')..."
+          ></textarea>
+          <button id="addNoteBtn" class="btn btn-secondary btn-full">
+            + Append Timestamped Observation
+          </button>
+        </div>
+        <div class="notes-feed" id="notesFeed">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+      <!-- 4. Save Run to Lab Bench -->
+      <section class="drawer-section">
+        <h3>4. Persist to Lab Bench (experiments/runs/)</h3>
+        <div class="save-run-controls">
+          <input
+            type="text"
+            id="customRunIdInput"
+            class="text-input"
+            placeholder="Optional custom run_id (auto-generated if blank)"
+          />
+          <button id="saveRunBtn" class="btn btn-primary btn-full">
+            Save Run to Lab Bench (POST /api/runs)
+          </button>
+        </div>
+        <div id="saveRunStatus" class="save-status hidden"></div>
+
+        <div class="saved-runs-container">
+          <div class="saved-runs-header">
+            <span>Saved Run Registry (`experiments/runs/`)</span>
+            <button id="refreshRunsBtn" class="btn-link">Refresh</button>
+          </div>
+          <div id="savedRunsList" class="saved-runs-list"></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{"ts": "2026-10-10T23:35:00.000Z", "event": "session_start", "condition": "evidence-cards", "show_confidence_badges": false, "seed": 42}
+{"ts": "2026-10-10T23:35:00.150Z", "event": "paper_view", "paper_id": "P01", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:06.078Z", "event": "abstract_expand", "paper_id": "P01", "confidence": 0.94, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:09.960Z", "event": "triage_decision", "paper_id": "P01", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 9.96, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:10.110Z", "event": "paper_view", "paper_id": "P02", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:16.230Z", "event": "triage_decision", "paper_id": "P02", "decision": "exclude", "ground_truth": "exclude", "correct": true, "decision_time_sec": 6.27, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:16.380Z", "event": "paper_view", "paper_id": "P03", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:21.200Z", "event": "triage_decision", "paper_id": "P03", "decision": "exclude", "ground_truth": "exclude", "correct": true, "decision_time_sec": 4.97, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:21.350Z", "event": "paper_view", "paper_id": "P04", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:26.440Z", "event": "triage_decision", "paper_id": "P04", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 5.24, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:26.590Z", "event": "paper_view", "paper_id": "P05", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:31.640Z", "event": "triage_decision", "paper_id": "P05", "decision": "include", "ground_truth": "maybe", "correct": false, "decision_time_sec": 5.2, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:31.790Z", "event": "paper_view", "paper_id": "P06", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:36.880Z", "event": "triage_decision", "paper_id": "P06", "decision": "exclude", "ground_truth": "exclude", "correct": true, "decision_time_sec": 5.24, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:37.030Z", "event": "paper_view", "paper_id": "P07", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:41.690Z", "event": "triage_decision", "paper_id": "P07", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 4.81, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:41.840Z", "event": "paper_view", "paper_id": "P08", "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:47.170Z", "event": "abstract_expand", "paper_id": "P08", "confidence": 0.68, "condition": "evidence-cards"}
+{"ts": "2026-10-10T23:35:52.010Z", "event": "triage_decision", "paper_id": "P08", "decision": "maybe", "ground_truth": "maybe", "correct": true, "decision_time_sec": 10.32, "condition": "evidence-cards"}

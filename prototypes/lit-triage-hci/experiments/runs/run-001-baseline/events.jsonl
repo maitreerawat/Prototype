@@ -1,0 +1,17 @@
+{"ts": "2026-10-10T23:35:00.000Z", "event": "session_start", "condition": "baseline", "show_confidence_badges": true, "seed": 42}
+{"ts": "2026-10-10T23:35:00.150Z", "event": "paper_view", "paper_id": "P01", "condition": "baseline"}
+{"ts": "2026-10-10T23:35:23.750Z", "event": "triage_decision", "paper_id": "P01", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 23.75, "condition": "baseline"}
+{"ts": "2026-10-10T23:35:23.900Z", "event": "paper_view", "paper_id": "P02", "condition": "baseline"}
+{"ts": "2026-10-10T23:35:40.760Z", "event": "triage_decision", "paper_id": "P02", "decision": "exclude", "ground_truth": "exclude", "correct": true, "decision_time_sec": 17.01, "condition": "baseline"}
+{"ts": "2026-10-10T23:35:40.910Z", "event": "paper_view", "paper_id": "P03", "condition": "baseline"}
+{"ts": "2026-10-10T23:36:05.480Z", "event": "triage_decision", "paper_id": "P03", "decision": "include", "ground_truth": "exclude", "correct": false, "decision_time_sec": 24.72, "condition": "baseline"}
+{"ts": "2026-10-10T23:36:05.630Z", "event": "paper_view", "paper_id": "P04", "condition": "baseline"}
+{"ts": "2026-10-10T23:36:24.070Z", "event": "triage_decision", "paper_id": "P04", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 18.59, "condition": "baseline"}
+{"ts": "2026-10-10T23:36:24.220Z", "event": "paper_view", "paper_id": "P05", "condition": "baseline"}
+{"ts": "2026-10-10T23:36:45.480Z", "event": "triage_decision", "paper_id": "P05", "decision": "maybe", "ground_truth": "maybe", "correct": true, "decision_time_sec": 21.41, "condition": "baseline"}
+{"ts": "2026-10-10T23:36:45.630Z", "event": "paper_view", "paper_id": "P06", "condition": "baseline"}
+{"ts": "2026-10-10T23:37:02.110Z", "event": "triage_decision", "paper_id": "P06", "decision": "exclude", "ground_truth": "exclude", "correct": true, "decision_time_sec": 16.63, "condition": "baseline"}
+{"ts": "2026-10-10T23:37:02.260Z", "event": "paper_view", "paper_id": "P07", "condition": "baseline"}
+{"ts": "2026-10-10T23:37:22.300Z", "event": "triage_decision", "paper_id": "P07", "decision": "include", "ground_truth": "include", "correct": true, "decision_time_sec": 20.19, "condition": "baseline"}
+{"ts": "2026-10-10T23:37:22.450Z", "event": "paper_view", "paper_id": "P08", "condition": "baseline"}
+{"ts": "2026-10-10T23:37:44.840Z", "event": "triage_decision", "paper_id": "P08", "decision": "include", "ground_truth": "maybe", "correct": false, "decision_time_sec": 22.54, "condition": "baseline"}

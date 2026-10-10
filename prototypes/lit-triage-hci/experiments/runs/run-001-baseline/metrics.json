@@ -1,0 +1,21 @@
+{
+  "run_id": "run-001-baseline",
+  "condition": "baseline",
+  "show_confidence_badges": true,
+  "papers_screened": 8,
+  "total_papers": 8,
+  "accuracy": 0.75,
+  "correct_count": 6,
+  "mean_decision_time_sec": 20.61,
+  "median_decision_time_sec": 20.8,
+  "total_elapsed_sec": 164.84,
+  "screening_efficiency": 0.0364,
+  "weak_paper_rejection_accuracy": 0.3333,
+  "abstract_expansions": 0,
+  "low_confidence_expansions": 0,
+  "selective_verification_ratio": 0.0,
+  "interaction_count": 9,
+  "precision_include": 0.6,
+  "recall_include": 1.0,
+  "f1_include": 0.75
+}

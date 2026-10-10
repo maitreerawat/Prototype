@@ -20,3 +20,4 @@ Whenever invoked after an experiment run or code iteration:
    - **Results & Metrics**: Markdown table comparing the run against the baseline (with $\Delta$ changes).
    - **Observations & Next Steps**: Key takeaways or anomalies noticed.
 3. **Preserve History**: Never overwrite or delete prior experimental entries in `LAB_NOTEBOOK.md`—always append chronologically and update the top-level summary table if one exists.
+

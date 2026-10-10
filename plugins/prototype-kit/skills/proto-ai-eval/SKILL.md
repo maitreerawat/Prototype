@@ -30,3 +30,4 @@ prototypes/<slug>/
 ## Key Conventions
 1. **Zero-Friction Fallback**: Support both live API keys (via `.env`) and a deterministic mock/cached mode so the evaluation harness can be smoke-tested immediately offline.
 2. **Side-by-Side Diff Table**: After each run, output a Markdown comparison table showing side-by-side qualitative outputs (`Input | Baseline Output | Variant Output | Score`) and trigger `proto-scribe` to log the aggregate metrics in `LAB_NOTEBOOK.md`.
+

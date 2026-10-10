@@ -24,3 +24,4 @@ Use this skill whenever the researcher asks to synthesize findings across multip
    - **Hypothesis Verdict**: Whether the empirical results support, partially support, or refute the initial hypothesis.
    - **Qualitative Insights**: Synthesized notes from `observations.jsonl` or researcher annotations (especially for HCI prototypes or LLM failure modes).
    - **Recommended Next Experiments**: Concrete follow-up ablations or parameter sweeps.
+

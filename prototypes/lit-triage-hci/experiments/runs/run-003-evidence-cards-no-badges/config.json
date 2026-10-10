@@ -1,0 +1,9 @@
+{
+  "run_id": "run-003-evidence-cards-no-badges",
+  "timestamp": "2026-10-10T23:35:00.000Z",
+  "condition": "evidence-cards",
+  "show_confidence_badges": false,
+  "seed": 42,
+  "mode": "simulated",
+  "total_papers": 8
+}

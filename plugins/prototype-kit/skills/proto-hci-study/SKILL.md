@@ -31,3 +31,4 @@ Every HCI prototype must include a toggleable side-by-side **Researcher Drawer**
 1. **Condition Switcher**: Instant toggle between study conditions (e.g., `Condition A: Baseline` vs. `Condition B: Treatment`) and key UI parameters.
 2. **Live Telemetry Counter**: Displays elapsed task timer, interaction count, and current state.
 3. **Side-by-Side Note Pad**: A quick input box where the researcher can type observations tagged to the current timestamp and UI state, plus an **"Export Run to Lab Notebook"** button (or local endpoint) that saves to `experiments/runs/<session-id>/` so `proto-scribe` can merge it into `LAB_NOTEBOOK.md`.
+

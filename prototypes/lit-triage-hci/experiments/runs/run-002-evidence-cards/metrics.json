@@ -1,0 +1,21 @@
+{
+  "run_id": "run-002-evidence-cards",
+  "condition": "evidence-cards",
+  "show_confidence_badges": true,
+  "papers_screened": 8,
+  "total_papers": 8,
+  "accuracy": 1.0,
+  "correct_count": 8,
+  "mean_decision_time_sec": 7.17,
+  "median_decision_time_sec": 6.34,
+  "total_elapsed_sec": 57.37,
+  "screening_efficiency": 0.1395,
+  "weak_paper_rejection_accuracy": 1.0,
+  "abstract_expansions": 3,
+  "low_confidence_expansions": 2,
+  "selective_verification_ratio": 2.6667,
+  "interaction_count": 12,
+  "precision_include": 1.0,
+  "recall_include": 1.0,
+  "f1_include": 1.0
+}
