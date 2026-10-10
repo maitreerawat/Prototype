@@ -1,0 +1,21 @@
+# OS & Editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Dependencies & Build artifacts for prototypes
+node_modules/
+dist/
+build/
+.next/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Temporary & Scratch files
+tmp/
+*.log
